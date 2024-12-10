@@ -14,11 +14,11 @@
       state: started
       enabled: yes
   - name: to install python dependecies
-      ansible.builtin.pip:
-        name:
-        - PyMySQL
-        - cryptography
-        executable: pip3.9 # pip version is completely depend on ansible python version
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      - cryptography
+      executable: pip3.9 # pip version is completely depend on ansible python version
   - name: Check DB Connection
       community.mysql.mysql_info:
         login_user: root
