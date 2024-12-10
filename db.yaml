@@ -1,0 +1,33 @@
+- name: to configure db
+  hosts: localhost
+  become: yes
+  vars:
+    login_host: db.daws79s.online
+  tasks:
+  - name: to install my-sql
+    ansible.builtin.dnf:
+      name: mysql-server
+      status: latest
+  - name: to enable and start and systemctl
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+  - name: to install pythion dependecies
+      ansible.builtin.pip:
+        name:
+          - PyMySQL
+          - cryptography
+          executable: pip3.9 # pip version is completely depend on ansible python version
+  - name: Check DB Connection
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: {{login_host}}
+        filter: version
+      register: checkuser
+      ignore_errors: True
+
+  - name: To Print error message
+    ansible.builtin.debug:
+      msg: "error is : {{checkuser}} "
