@@ -20,13 +20,13 @@
       - cryptography
       executable: pip3.9 # pip version is completely depend on ansible python version
   - name: Check DB Connection
-      community.mysql.mysql_info:
-        login_user: root
-        login_password: ExpenseApp@1
-        login_host: {{login_host}}
-        filter: version
-      register: checkuser
-      ignore_errors: True
+    community.mysql.mysql_info:
+      login_user: root
+      login_password: ExpenseApp@1
+      login_host: {{login_host}}
+      filter: version
+    register: checkuser
+    ignore_errors: True
 
   - name: To Print error message
     ansible.builtin.debug:
