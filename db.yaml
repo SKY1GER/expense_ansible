@@ -26,8 +26,8 @@
   - name: Check DB Connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: {{ my_sql_password }}
-      login_host: {{login_host}}
+      login_password: "{{ my_sql_password }}"
+      login_host: "{{login_host}}"
       filter: version
     register: checkuser
     ignore_errors: True
