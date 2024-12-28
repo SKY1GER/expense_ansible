@@ -1,0 +1,7 @@
+- name: Command vs Shell
+  hosts: localhosts
+  tasks:
+  - name: to run and redirect in command module
+    ansible.builtin.command: "echo 'Hi, this from command module' > /tmp/command.txt"
+  - name: to run and redirect in command module
+    ansible.builtin.command: "echo 'Hi, this from shell module' > /tmp/shell.txt"
