@@ -1,5 +1,5 @@
 - name: to configure backend
-  hosts: localhost
+  hosts: backend
   become: yes
   tasks:
   - name: to disable existing node js
