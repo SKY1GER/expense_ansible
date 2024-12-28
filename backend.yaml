@@ -28,6 +28,6 @@
      dest:  /tmp/backend.zip
 
 - name: Extract backend.zip  into /app
-  ansible.builtin.unarchive:
-    src: /tmp/backend.zip
-    dest: /app
+    ansible.builtin.unarchive:
+      src: /tmp/backend.zip
+      dest: /app
