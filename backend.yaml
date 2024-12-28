@@ -33,5 +33,5 @@
       dest: /app
       remote_src: yes
 
-  - name: install npm dependencies
+
     
