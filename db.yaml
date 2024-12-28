@@ -4,7 +4,7 @@
   vars:
     login_host: db.daws79s.online
   vars_prompt:
-  - name: my_sql_password
+  - name: mysql_root_password
     prompt: please enter password
     private: False
   tasks:
@@ -29,13 +29,14 @@
       login_password: "{{ my_sql_password }}"
       login_host: "{{login_host}}"
       filter: version
-    register: checkuser
     ignore_errors: True
+    register: checkuser
+
 
   - name: To Print error message
     ansible.builtin.debug:
       msg: "error is : {{checkuser}} "
   
-  - name: to set roor password
-    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{my_sql_password}}"
-    when: checkuser.failed is true
+  - name: to set root password
+    ansible.builtin.command:  "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
+    when: checkuser.failed is true # don't give {{ }} in when condition
