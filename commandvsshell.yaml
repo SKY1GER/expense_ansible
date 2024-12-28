@@ -5,3 +5,7 @@
     ansible.builtin.command: "echo 'Hi, this from command module' > /tmp/command.txt"
   - name: to run and redirect in command module
     ansible.builtin.shell: "echo 'Hi, this from shell module' > /tmp/shell.txt"
+
+    #simple commands without need of shell environment and features like redirections pipes , & go for command module
+    #if we run complex commands & scripts go for shell module
+    #whatever works in command module will work in shell module but vice versa is not possibel

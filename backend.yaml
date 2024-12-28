@@ -1,0 +1,23 @@
+- name: to configure backend
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: to disable existing node js
+    ansible.builtin.command: dnf module disable nodejs -y
+  
+  - name: to enable node js version 20
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+
+  - name: to install node js 
+    ansible.builtin.dnf: #only works for redhat family
+     name: nodejs
+     state: installed
+
+  - name: Add the user expense
+    ansible.builtin.user:
+      name: expense
+
+  - name: to create app directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
