@@ -1,5 +1,5 @@
 - name: to configure db
-  hosts: localhost
+  hosts: db
   become: yes
   vars:
     login_host: db.daws79s.online
