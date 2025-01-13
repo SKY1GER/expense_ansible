@@ -1,5 +1,10 @@
 - name: to configure backend
   hosts: backend
+  vars:
+    mysql_root_password: ExpenseApp@1
+    login_host: backend.daws79s.online
+
+    
   become: yes
   tasks:
   - name: to disable existing node js
@@ -10,8 +15,11 @@
 
   - name: to install node js 
     ansible.builtin.dnf: #only works for redhat family
-     name: nodejs
+     name: "{{ item }}"
      state: installed
+     loop:
+     - nodejs
+     - MySql
 
   - name: Add the user expense
     ansible.builtin.user:
@@ -42,4 +50,19 @@
     ansible.builtin.copy:
       src: backend.service
       dest: /etc/systemd/system/backend.service
+
+  - name: install connect mysql db from ansible 
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      - cryptography
+      executable: pip3.9 # pip3.11 if python version is 3.11
+  - name: import data to mysql 
+    community.mysql.mysql_db:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_host: "{{ login_host }}"
+        target: /app/schema/backend.sql
+        state: dump
+
     
