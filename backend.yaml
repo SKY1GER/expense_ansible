@@ -2,7 +2,7 @@
   hosts: backend
   vars:
     mysql_root_password: ExpenseApp@1
-    login_host: backend.daws79s.online
+    login_host: db.daws79s.online
 
     
   become: yes
