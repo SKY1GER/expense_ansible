@@ -1,11 +1,9 @@
 - name: to configure backend
   hosts: backend
+  become: yes
   vars:
     mysql_root_password: ExpenseApp@1
     login_host: db.daws79s.online
-
-    
-  become: yes
   tasks:
   - name: to disable existing node js
     ansible.builtin.command: dnf module disable nodejs -y
