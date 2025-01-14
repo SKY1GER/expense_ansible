@@ -16,10 +16,10 @@
       path: /usr/share/nginx/html
       state: absent
 
-    - name: Recursively remove directory
-      ansible.builtin.file:
-        path: /usr/share/nginx/html/
-        state: directory
+  - name: Recursively remove directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/
+      state: directory
   
   # - name: download backend code
   #   ansible.builtin.get_url:
